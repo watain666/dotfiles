@@ -31,9 +31,6 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Font mode for powerlevel9k
 POWERLEVEL9K_MODE='nerdfont-complete'
 
-# Set name of the theme to load.
-# ZSH_THEME="powerlevel9k/powerlevel9k"
-
 prompt_zsh_showSpotify () {
   local color='%F{red}'
   state=`spotify-cli now-playing`;
