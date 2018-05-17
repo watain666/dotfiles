@@ -90,12 +90,6 @@ source $ZSH/plugins/zsh-incremental/incr*.zsh
 # User configuration
 export EDITOR='vim'
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-
 #[libimobiledevice]
 [ ! -d "$HOME/usr/src" ] && mkdir -p "$HOME/usr/src"
 export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig:${PKG_CONFIG_PATH}"
@@ -135,9 +129,6 @@ alias saug='sudo apt upgrade -y'
 
 #[cd]
 alias dl='~/下載'
-alias lampp='cd /opt/lampp'
-alias htdocs='cd /opt/lampp/htdocs'
-alias www='cd /opt/lampp/htdocs/'
 
 #[dir]
 hash -d lampp='/opt/lampp'
@@ -150,6 +141,9 @@ hash -d aurora='/home/rexliu/.conky/Aurora'
 #[other]
 alias xc='xclip -sel clip'
 alias vz='vim ~/.zshrc'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
 #[jekyll]
