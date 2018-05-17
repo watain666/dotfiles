@@ -1,7 +1,29 @@
+source ~/.zplug/init.zsh
+
+# Make sure to use double quotes
+zplug "zsh-users/zsh-history-substring-search"
+
+# Supports oh-my-zsh plugins and the like
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/git-flow", from:oh-my-zsh
+zplug "plugins/composer", from:oh-my-zsh 
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+
+# Can manage local plugins
+#zplug "~/.zsh", from:local
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
 export TERM=xterm-256color
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/rexliu/.oh-my-zsh
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -10,7 +32,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 POWERLEVEL9K_MODE='nerdfont-complete'
 
 # Set name of the theme to load.
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 
 prompt_zsh_showSpotify () {
   local color='%F{red}'
@@ -76,16 +98,9 @@ ENABLE_CORRECTION="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow debian grails rvm history-substring-search github gradle svn node npm zsh-syntax-highlighting sublime composer)
-plugins=(zsh-autosuggestions)
+# homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-source $ZSH/oh-my-zsh.sh
-source $ZSH/plugins/zsh-incremental/incr*.zsh
 
 # User configuration
 export EDITOR='vim'
@@ -100,7 +115,6 @@ export PATH="$PATH:$HOME/.composer/vendor/bin"
 export LD_LIBRARY_PATH="${HOME}/usr/lib:${LD_LIBRARY_PATH}"
 alias iphone='idevicepair pair | ifuse ~/usr/mnt/'
 alias uniphone='fusermount -u ~/usr/mnt'
-
 
 #[git]
 alias gits='git status'
@@ -134,7 +148,7 @@ alias dl='~/下載'
 hash -d lampp='/opt/lampp'
 hash -d htdocs='/opt/lampp/htdocs'
 hash -d osm='/opt/lampp/htdocs/osm'
-hash -d dropbox='/home/rexliu/Dropbox'
+hash -d dropbox=$HOME/Dropbox
 hash -d dl='/home/rexliu/下載'
 hash -d aurora='/home/rexliu/.conky/Aurora'
 
@@ -170,3 +184,5 @@ function weather ()
 # OPAM configuration
 . /home/rexliu/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
