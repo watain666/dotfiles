@@ -15,13 +15,13 @@ When the time to migrate at a new machine, it might be somehow troubling. So I u
 
 Using curl:
 
-```
+```shell
 bash <(curl -s https://raw.githubusercontent.com/watain666/dotfiles/master/install.sh)
 ```
 
 Or from local disk (this will make a link pointing existing repo)
 
-```
+```shell
 bash path/to/repo/install.sh
 ```
 
@@ -29,7 +29,7 @@ bash path/to/repo/install.sh
 
 WARNING: This will overwrite existing files!
 
-```
+```shell
 path/to/repo/rsync.sh
 ```
 
