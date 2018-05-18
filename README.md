@@ -1,5 +1,4 @@
-
-dotSetting
+dotfiles
 ===
 
 After few years of usage in commandline, I got a lot of setting like `.bashrc`, `.vimrc`, `.tmux.conf`...  
