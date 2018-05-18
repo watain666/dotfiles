@@ -1,3 +1,7 @@
+# homeshick
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+
 source ~/.zplug/init.zsh
 
 # Make sure to use double quotes
@@ -8,10 +12,11 @@ zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/git-flow", from:oh-my-zsh
 zplug "plugins/composer", from:oh-my-zsh 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 
 # Can manage local plugins
-#zplug "~/.zsh", from:local
+zplug "~/.zsh/plugins/auto-fu.zsh", from:local
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -95,10 +100,6 @@ ENABLE_CORRECTION="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# homeshick
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-
 # User configuration
 export EDITOR='vim'
 
@@ -139,7 +140,7 @@ alias saud='sudo apt update'
 alias saug='sudo apt upgrade -y'
 
 #[cd]
-alias dl='~/下載'
+alias dl='cd ~/下載'
 
 #[dir]
 hash -d lampp='/opt/lampp'
