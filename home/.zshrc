@@ -117,13 +117,14 @@ alias php.ini='sudo vim /opt/lampp/etc/php.ini'
 #[program]
 alias xampp='sudo /opt/lampp/manager-linux-x64.run&'
 alias dropbox='python ~/dropbox.py'
-alias lyrics='~/lyricfier-linux-x64/lyricfier&'
-alias postman='~/Postman/Postman&'
+alias lyrics="$HOME/lyricfier-linux-x64/lyricfier&"
+alias postman="$HOME/Postman/Postman&"
 
 #[system]
 alias s='sudo'
 alias sai='sudo apt install'
-alias sar='sudo apt remove --auto-remove --purge'
+alias sar='sudo apt remove'
+alias sarp='sudo apt remove --auto-remove --purge'
 alias saud='sudo apt update'
 alias saug='sudo apt upgrade -y'
 
@@ -134,12 +135,13 @@ alias dl='~/下載'
 hash -d lampp='/opt/lampp'
 hash -d htdocs='/opt/lampp/htdocs'
 hash -d osm='/opt/lampp/htdocs/osm'
-hash -d dropbox='/home/rexliu/Dropbox'
-hash -d dl='/home/rexliu/下載'
-hash -d aurora='/home/rexliu/.conky/Aurora'
+hash -d dropbox="$HOME/Dropbox"
+hash -d dl="$HOME/下載"
 
 #[other]
-alias xc='xclip -sel clip'
+alias lyric="python3 $HOME/lyrics-crawler/get-lyric.py"
+alias 5g1="python3 $HOME/Dropbox/Dev/5g1/5g1/main.py"
+alias xc='xclip -sel clip < '
 alias vz='vim ~/.zshrc'
 alias ll='ls -alF'
 alias la='ls -A'
@@ -148,7 +150,6 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
 #[jekyll]
 alias brain='bundle exec jekyll serve'
-alias cloneguake='tablabel=`guake -l` && guake -n `pwd` && guake -r $tablabel'
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
@@ -168,5 +169,5 @@ function weather ()
 }
 
 # OPAM configuration
-. /home/rexliu/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
