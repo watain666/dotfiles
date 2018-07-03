@@ -101,7 +101,6 @@ export LD_LIBRARY_PATH="${HOME}/usr/lib:${LD_LIBRARY_PATH}"
 alias iphone='idevicepair pair | ifuse ~/usr/mnt/'
 alias uniphone='fusermount -u ~/usr/mnt'
 
-
 #[git]
 alias gits='git status'
 alias gitk='gitk --all&'
@@ -117,8 +116,14 @@ alias php.ini='sudo vim /opt/lampp/etc/php.ini'
 #[program]
 alias xampp='sudo /opt/lampp/manager-linux-x64.run&'
 alias dropbox='python ~/dropbox.py'
-alias lyrics="$HOME/lyricfier-linux-x64/lyricfier&"
+alias lyricfier="$HOME/lyricfier-linux-x64/lyricfier&"
 alias postman="$HOME/Postman/Postman&"
+
+#[script]
+alias youtube-dl="noglob youtube-dl"
+alias ydm="youtube-dl -x --audio-format mp3 --embed-thumbnail --add-metadata"
+alias lyric="python3 $HOME/lyrics-crawler/get-lyric.py"
+alias 5g1="python3 $HOME/Dropbox/Dev/5g1/5g1/main.py"
 
 #[system]
 alias s='sudo'
@@ -139,8 +144,6 @@ hash -d dropbox="$HOME/Dropbox"
 hash -d dl="$HOME/下載"
 
 #[other]
-alias lyric="python3 $HOME/lyrics-crawler/get-lyric.py"
-alias 5g1="python3 $HOME/Dropbox/Dev/5g1/5g1/main.py"
 alias xc='xclip -sel clip < '
 alias vz='vim ~/.zshrc'
 alias ll='ls -alF'
@@ -171,3 +174,4 @@ function weather ()
 # OPAM configuration
 . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
+export PATH=$PATH:/usr/local/go/bin
