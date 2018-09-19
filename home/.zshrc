@@ -12,18 +12,18 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 # Set name of the theme to load.
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-prompt_zsh_showSpotify () {
-  local color='%F{red}'
-  state=`spotify-cli now-playing`;
-  if [ $state = "Spotify service not found - is it running?" ]; then
-
-  else
-    artist=`spotify-cli now-playing | grep "spotify_artist_name" | cut -d'=' -f2 | cut -d '"' -f2`
-    track=`spotify-cli now-playing | grep "spotify_track_name" | cut -d'=' -f2 | cut -d '"' -f2`
-
-    echo -n "%{$color%}\uf1bc $artist - $track " ;
-  fi
-}
+#prompt_zsh_showSpotify () {
+#  local color='%F{red}'
+#  state=`spotify-cli now-playing`;
+#  if [ $state = "Spotify service not found - is it running?" ]; then
+#
+#  else
+#    artist=`spotify-cli now-playing | grep "spotify_artist_name" | cut -d'=' -f2 | cut -d '"' -f2`
+#    track=`spotify-cli now-playing | grep "spotify_track_name" | cut -d'=' -f2 | cut -d '"' -f2`
+#
+#    echo -n "%{$color%}\uf1bc $artist - $track " ;
+#  fi
+#}
 
 # Prompt settings
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -32,9 +32,11 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='\uf0da'
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{black}%F{green} \uf155%f%F{black} %k\ue0b0%f "
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_spotify time)
-POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %m/%d/%y}"
-POWERLEVEL9K_CUSTOM_SPOTIFY="prompt_zsh_showSpotify"
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_spotify time)
+#POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %m/%d/%y}"
+POWERLEVEL9K_TIME_FORMAT="%D{%m/%d/%y \uf073 %H:%M}"
+#POWERLEVEL9K_CUSTOM_SPOTIFY="prompt_zsh_showSpotify"
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_ZSH_SHOWSTATUS_BACKGROUND='black'
 
@@ -85,7 +87,7 @@ plugins=(zsh-autosuggestions)
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 source $ZSH/oh-my-zsh.sh
-source $ZSH/plugins/zsh-incremental/incr*.zsh
+#source $ZSH/plugins/zsh-incremental/incr*.zsh
 
 # User configuration
 export EDITOR='vim'
@@ -111,7 +113,7 @@ alias gitc='git commit'
 #[php]
 alias composer='php /opt/lampp/bin/composer.phar'
 export PATH="$PATH:$HOME/.composer/vendor/bin"
-alias php.ini='sudo vim /opt/lampp/etc/php.ini'
+#alias php.ini='sudo vim /opt/lampp/etc/php.ini'
 
 #[program]
 alias xampp='sudo /opt/lampp/manager-linux-x64.run&'
@@ -129,6 +131,7 @@ alias 5g1="python3 $HOME/Dropbox/Dev/5g1/5g1/main.py"
 alias s='sudo'
 alias sai='sudo apt install'
 alias sar='sudo apt remove'
+alias saar='sudo apt autoremove'
 alias sarp='sudo apt remove --auto-remove --purge'
 alias saud='sudo apt update'
 alias saug='sudo apt upgrade -y'
@@ -139,6 +142,7 @@ alias dl='~/下載'
 #[dir]
 hash -d lampp='/opt/lampp'
 hash -d htdocs='/opt/lampp/htdocs'
+hash -d html='/var/www/html'
 hash -d osm='/opt/lampp/htdocs/osm'
 hash -d dropbox="$HOME/Dropbox"
 hash -d dl="$HOME/下載"
@@ -149,6 +153,7 @@ alias vz='vim ~/.zshrc'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias rmcl='setxkbmap -option ctrl:nocaps'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
 #[jekyll]
@@ -175,3 +180,14 @@ function weather ()
 . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 export PATH=$PATH:/usr/local/go/bin
+
+# Ruby Gems
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
+
+# Remap CapsLock to Ctrl
+setxkbmap -option ctrl:nocaps
+
+# PHPBrew
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
