@@ -98,7 +98,6 @@ export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig:${PKG_CONFIG_PATH}"
 export CPATH="${HOME}/usr/include:${CPATH}"
 export MANPATH="${HOME}/usr/share/man:${MANPATH}"
 #export PATH="${HOME}/usr/bin:${PATH}"
-export PATH="$PATH:$HOME/.composer/vendor/bin"
 export LD_LIBRARY_PATH="${HOME}/usr/lib:${LD_LIBRARY_PATH}"
 alias iphone='idevicepair pair | ifuse ~/usr/mnt/'
 alias uniphone='fusermount -u ~/usr/mnt'
@@ -111,7 +110,7 @@ alias gita.='git add .'
 alias gitc='git commit'
 
 #[php]
-alias composer='php /opt/lampp/bin/composer.phar'
+#alias composer='php /opt/lampp/bin/composer.phar'
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 #alias php.ini='sudo vim /opt/lampp/etc/php.ini'
 
