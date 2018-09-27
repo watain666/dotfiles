@@ -113,6 +113,7 @@ alias gitc='git commit'
 #alias composer='php /opt/lampp/bin/composer.phar'
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 #alias php.ini='sudo vim /opt/lampp/etc/php.ini'
+alias phpbrewswitch='bash /home/rexliu/Dropbox/Dev/phpbrewswtich/phpbrewswitch'
 
 #[program]
 alias xampp='sudo /opt/lampp/manager-linux-x64.run&'
@@ -135,9 +136,6 @@ alias sarp='sudo apt remove --auto-remove --purge'
 alias saud='sudo apt update'
 alias saug='sudo apt upgrade -y'
 
-#[cd]
-alias dl='~/下載'
-
 #[dir]
 hash -d lampp='/opt/lampp'
 hash -d htdocs='/opt/lampp/htdocs'
@@ -157,9 +155,8 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
 #[jekyll]
 alias brain='bundle exec jekyll serve'
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
+#[xterm]
 case $TERM in
     xterm*)
         precmd () {print -Pn "\e]0;%n@%m\a"}
