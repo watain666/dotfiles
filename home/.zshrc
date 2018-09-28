@@ -110,21 +110,16 @@ alias gita.='git add .'
 alias gitc='git commit'
 
 #[php]
-#alias composer='php /opt/lampp/bin/composer.phar'
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-#alias php.ini='sudo vim /opt/lampp/etc/php.ini'
-alias phpbrewswitch='bash /home/rexliu/Dropbox/Dev/phpbrewswtich/phpbrewswitch'
+alias phpbrewswitch='bash /home/rexliu/Dropbox/Dev/phpbrew-tool/phpbrewswitch'
 
 #[program]
-alias xampp='sudo /opt/lampp/manager-linux-x64.run&'
 alias dropbox='python ~/dropbox.py'
-alias lyricfier="$HOME/lyricfier-linux-x64/lyricfier&"
 alias postman="$HOME/Postman/Postman&"
 
 #[script]
 alias youtube-dl="noglob youtube-dl"
 alias ydm="youtube-dl -x --audio-format mp3 --embed-thumbnail --add-metadata"
-alias lyric="python3 $HOME/lyrics-crawler/get-lyric.py"
+alias lyric="python3 $HOME/Dropbox/Dev/lyrics-crawler/get-lyric.py"
 alias 5g1="python3 $HOME/Dropbox/Dev/5g1/5g1/main.py"
 
 #[system]
@@ -137,12 +132,9 @@ alias saud='sudo apt update'
 alias saug='sudo apt upgrade -y'
 
 #[dir]
-hash -d lampp='/opt/lampp'
-hash -d htdocs='/opt/lampp/htdocs'
 hash -d html='/var/www/html'
-hash -d osm='/opt/lampp/htdocs/osm'
 hash -d dropbox="$HOME/Dropbox"
-hash -d dl="$HOME/下載"
+hash -d dl="$HOME/Downloads"
 
 #[other]
 alias xc='xclip -sel clip < '
@@ -150,20 +142,12 @@ alias vz='vim ~/.zshrc'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias rmcl='setxkbmap -option ctrl:nocaps'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
 #[jekyll]
-alias brain='bundle exec jekyll serve'
+alias bejs='bundle exec jekyll serve'
 
-#[xterm]
-case $TERM in
-    xterm*)
-        precmd () {print -Pn "\e]0;%n@%m\a"}
-        ;;
-esac
-
-# https://github.com/nvbn/thefuck
+#[thefuck]
 eval "$(thefuck --alias)"
 
 # Weather in terminal
@@ -172,18 +156,19 @@ function weather ()
     curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Taipei}?${2:-0q}"
 }
 
-# OPAM configuration
+#[OPAM]
 . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
+#[go]
 export PATH=$PATH:/usr/local/go/bin
 
-# Ruby Gems
+#[Ruby Gems]
 export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH
 
-# Remap CapsLock to Ctrl
+#[Remap CapsLock to Ctrl]
 setxkbmap -option ctrl:nocaps
 
-# PHPBrew
+#[PHPBrew]
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
