@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ## How to install
 
@@ -15,7 +15,7 @@
 # ```
 
 # =============================================================================
-# bootstrap script to install Homeshick, pastleo/dotSetting and castles you
+# bootstrap script to install Homeshick, watain666/dotfiles and castles you
 # preferred to a new system.
 # 
 # This file is copied and modified from

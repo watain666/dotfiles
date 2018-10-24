@@ -110,7 +110,8 @@ alias gita.='git add .'
 alias gitc='git commit'
 
 #[php]
-alias phpbrewswitch='bash /home/rexliu/Dropbox/Dev/phpbrew-tool/phpbrewswitch'
+alias phpbrewswitch='bash /home/rexliu/Dropbox/Dev/phpbrew-tool/phpbrewswitch && reload'
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 #[program]
 alias dropbox='python ~/dropbox.py'
@@ -142,6 +143,7 @@ alias vz='vim ~/.zshrc'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias ip='ip -c address show'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
 #[jekyll]
