@@ -1,7 +1,9 @@
 dotfiles
 ===
 
-After few years of usage in commandline, I got a lot of setting like `.bashrc`, `.vimrc`, `.tmux.conf`...  
+(Forked from [dotSetting](https://github.com/pastleo/dotSetting))
+
+After few years of usage in commandline, I got a lot of setting like `.bashrc`, `.vimrc`, `.tmux.conf`...
 When the time to migrate at a new machine, it might be somehow troubling. So I use [homeshick](https://github.com/andsens/homeshick)
 
 ## Requirement
@@ -32,4 +34,3 @@ WARNING: This will overwrite existing files!
 ```shell
 path/to/repo/rsync.sh
 ```
-
