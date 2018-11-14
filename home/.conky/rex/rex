@@ -1,0 +1,166 @@
+# Conky settings #
+background yes
+imlib_cache_size 10
+
+# Use Xft?
+use_xft yes
+xftfont Monospace:size=10
+xftalpha 0.8
+text_buffer_size 2048
+
+# Update interval in seconds
+update_interval 1
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_transparent no
+own_window_type normal
+#own_window_type conky
+#own_window_class override
+own_window_hints undecorated
+#own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 180 1025
+maximum_width 265
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 0
+
+# border margins
+#border_margin 5
+
+# border width
+border_width 1
+
+# Default colors and also border colors
+default_color white
+#default_shade_color grey
+#default_outline_color white
+own_window_colour 000000
+own_window_argb_visual yes
+own_window_argb_value 80
+
+# Text alignment, other possible values are commented
+alignment top_left
+#alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 15
+gap_y 40
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer none
+draw_graph_borders no
+TEXT
+\
+# SYSTEM
+\
+${voffset 5}${font Sans:size=14}SYSTEM${font}${alignr}Uptime: ${uptime}
+${alignr}Kernel: ${kernel}
+${alignr}${execi 6000 cat /proc/cpuinfo | grep -i 'Model name' -m 1 | cut -c14-}
+${alignr}Check updates:${execi 6000 aptitude search "~U" | /usr/bin/wc -l}
+CPU1: ${cpu cpu1}% ${alignr}${cpubar cpu1 8,100}${color}${outlinecolor}
+CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 8,100}${color}${outlinecolor}
+RAM : ${memperc}% ${alignr}${membar 8,100}${color}${outlinecolor}
+SWAP: ${swapperc}% ${alignr}${swapbar 8,100}${color}${outlinecolor}
+\
+# Top CPU & MEM
+\
+${voffset 5}${font Sans:size=14}Top CPU / MEM${font}
+${font Monospace:size=6}PID${offset 21}COMMAND${alignr}%CPU${font}
+${top pid 1} ${top name 1}${alignr}${top cpu 1}
+${top pid 2} ${top name 2}${alignr}${top cpu 2}
+${top pid 3} ${top name 3}${alignr}${top cpu 3}
+${top pid 4} ${top name 4}${alignr}${top cpu 4}
+${top pid 5} ${top name 5}${alignr}${top cpu 5}
+${font Monospace:size=6}PID${offset 21}COMMAND${alignr}%MEM${font}
+${top_mem pid 1} ${top_mem name 1}${alignr}${top_mem mem_res 1}${top_mem mem 1}
+${top_mem pid 2} ${top_mem name 2}${alignr}${top_mem mem_res 2}${top_mem mem 2}
+${top_mem pid 3} ${top_mem name 3}${alignr}${top_mem mem_res 3}${top_mem mem 3}
+${top_mem pid 4} ${top_mem name 4}${alignr}${top_mem mem_res 4}${top_mem mem 4}
+${top_mem pid 5} ${top_mem name 5}${alignr}${top_mem mem_res 5}${top_mem mem 5}
+\
+# HARDDISK
+\
+${voffset 5}${font Sans:size=14}HARDDISK${font} ${alignr}${voffset -8}${color}${outlinecolor}${alignr}${diskiograph 20,115}
+I/O:${alignr}${diskio}
+Root: ${alignr}${fs_used /} + ${fs_free /}
+${offset 10}${fs_size /} ${alignr}${fs_bar 10,115 /}${color}${outlinecolor}
+Home: ${alignr} ${fs_used /home} + ${fs_free /home}
+${offset 10}${fs_size /home} ${alignr}${fs_bar 10,115 /home}${color}${outlinecolor}
+\
+# xDSL
+\
+${voffset 5}${font Sans:size=14}xDSL${font}${alignr}IP: ${addr enp2s0}
+${alignr}External IP: ${execi 86400 wget -q -O - checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'}
+Down: ${alignr}${voffset -1}${downspeed enp2s0}${alignr}/s ↓
+${offset 10}Total: ${alignr}${totalup enp2s0}
+Up: ${alignr}${voffset -1}${upspeed enp2s0}${alignr}/s ↑
+${offset 10}Total: ${alignr}${totaldown enp2s0}
+\
+# TCP Connect
+\
+${voffset 5}${font Sans:size=14}TCP Connect${font} ${alignr}Total: ${tcp_portmon 1 65535 count}
+${font Monospace:size=6}IP  Port ${alignr}Service${font}
+${tcp_portmon 1 65535 rip 0}  ${tcp_portmon 1 65535 rport 0} ${alignr}${tcp_portmon 1 65535 rservice 0}
+${tcp_portmon 1 65535 rip 1}  ${tcp_portmon 1 65535 rport 1} ${alignr}${tcp_portmon 1 65535 rservice 1}
+${tcp_portmon 1 65535 rip 2}  ${tcp_portmon 1 65535 rport 2} ${alignr}${tcp_portmon 1 65535 rservice 2}
+${tcp_portmon 1 65535 rip 3}  ${tcp_portmon 1 65535 rport 3} ${alignr}${tcp_portmon 1 65535 rservice 3}
+${tcp_portmon 1 65535 rip 4}  ${tcp_portmon 1 65535 rport 4} ${alignr}${tcp_portmon 1 65535 rservice 4}
+#${tcp_portmon 1 65535 rip 5}  ${tcp_portmon 1 65535 rport 5} ${alignr}${tcp_portmon 1 65535 rservice 5}
+#${tcp_portmon 1 65535 rip 6}  ${tcp_portmon 1 65535 rport 6} ${alignr}${tcp_portmon 1 65535 rservice 6}
+#${tcp_portmon 1 65535 rip 7}  ${tcp_portmon 1 65535 rport 7} ${alignr}${tcp_portmon 1 65535 rservice 7}
+#${tcp_portmon 1 65535 rip 8}  ${tcp_portmon 1 65535 rport 8} ${alignr}${tcp_portmon 1 65535 rservice 8}
+\
+# SPOTIFY
+\
+${if_running spotify}${voffset 10}${font Sans:size=14}SPOTIFY
+# --- Show now playing information ---
+${font Sans:size=10}Artist:${alignr}${font Noto Sans CJK TC:size=10}${exec ~/.conky/conky-spotify/scripts/artist.sh}
+Album:${alignr}${font Noto Sans CJK TC:size=10}${exec ~/.conky/conky-spotify/scripts/album.sh}
+Title:${alignr}${font Noto Sans CJK TC:size=10}${exec ~/.conky/conky-spotify/scripts/title.sh}
+${font}
+# --- Get Spotify Cover ---
+${exec ~/.conky/conky-spotify/scripts/cover.sh}
+# --- Show wallpaper and cover ---
+${image ~/.conky/conky-spotify/current/current.jpg -p 50, 860 -s 164x164 -f 5}
+#${execi 6000 ~/.conky/scripts/spotify/spotify_album_cover.sh}
+#${image ~/.conky/scripts/spotify/last_album_pic.png -p 0, 930 -s 70x70 -f 5}
+${endif}

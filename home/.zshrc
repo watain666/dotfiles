@@ -110,8 +110,11 @@ alias gita.='git add .'
 alias gitc='git commit'
 
 #[php]
-alias phpbrewswitch='bash /home/rexliu/Dropbox/Dev/phpbrew-tool/phpbrewswitch && reload'
+#alias phpbrewswitch='bash /home/rexliu/Dropbox/Dev/phpbrew-tool/phpbrewswitch && reload'
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+
+#[PATH]
+export PATH="$PATH:$HOME/bin"
 
 #[program]
 alias dropbox='python ~/dropbox.py'
