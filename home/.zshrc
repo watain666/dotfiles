@@ -83,7 +83,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-flow debian grails rvm history-substring-search github gradle svn node npm zsh-syntax-highlighting sublime composer)
-plugins=(zsh-autosuggestions)
+plugins+=(zsh-autosuggestions)
+plugins+=(k)
+
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 source $ZSH/oh-my-zsh.sh
@@ -99,8 +101,8 @@ export CPATH="${HOME}/usr/include:${CPATH}"
 export MANPATH="${HOME}/usr/share/man:${MANPATH}"
 #export PATH="${HOME}/usr/bin:${PATH}"
 export LD_LIBRARY_PATH="${HOME}/usr/lib:${LD_LIBRARY_PATH}"
-alias iphone='idevicepair pair | ifuse ~/usr/mnt/'
-alias uniphone='fusermount -u ~/usr/mnt'
+alias iphone='idevicepair pair | ifuse /media/iPhone'
+alias uniphone='fusermount -u /media/iPhone'
 
 #[git]
 alias gits='git status'
@@ -116,15 +118,12 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 #[PATH]
 export PATH="$PATH:$HOME/bin"
 
-#[program]
-alias dropbox='python ~/dropbox.py'
-alias postman="$HOME/Postman/Postman&"
-
 #[script]
 alias youtube-dl="noglob youtube-dl"
 alias ydm="youtube-dl -x --audio-format mp3 --embed-thumbnail --add-metadata"
 alias lyric="python3 $HOME/Dropbox/Dev/lyrics-crawler/get-lyric.py"
 alias 5g1="python3 $HOME/Dropbox/Dev/5g1/5g1/main.py"
+alias sgl="python3 $HOME/Dropbox/Dev/sgl/scripts/591/main.py"
 
 #[system]
 alias s='sudo'
@@ -138,6 +137,7 @@ alias saug='sudo apt upgrade -y'
 #[dir]
 hash -d html='/var/www/html'
 hash -d dropbox="$HOME/Dropbox"
+hash -d dev="$HOME/Dropbox/Dev"
 hash -d dl="$HOME/Downloads"
 
 #[other]
@@ -147,7 +147,13 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ip='ip -c address show'
+alias xclock='xclock -g +0+0 -update 1'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias rlf='readlink -f'
+alias cp='cp -avi'
+alias rm='rm -vi'
+alias mv='mv -vi'
+alias ln='ln -vi'
 
 #[jekyll]
 alias bejs='bundle exec jekyll serve'
@@ -177,3 +183,21 @@ setxkbmap -option ctrl:nocaps
 #[PHPBrew]
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
+#[Hub]
+eval "$(hub alias -s)"
+
+#[Github Token]
+if [[ -f $HOME/.github_token ]]
+then
+  export GiTHUB_TOKEN=$(cat $HOME/.github_token)
+fi
+
+#[Flameshot]
+alias fs='flameshot gui -d 3000'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#[Anaconda]
+source $HOME/anaconda3/etc/profile.d/conda.sh

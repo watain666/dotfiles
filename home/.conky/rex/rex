@@ -66,7 +66,7 @@ alignment top_left
 # Gap between borders of screen and text
 # same thing as passing -x at command line
 gap_x 15
-gap_y 40
+gap_y 38
 
 # Subtract file system buffers from used memory?
 no_buffers yes
@@ -95,7 +95,6 @@ TEXT
 ${voffset 5}${font Sans:size=14}SYSTEM${font}${alignr}Uptime: ${uptime}
 ${alignr}Kernel: ${kernel}
 ${alignr}${execi 6000 cat /proc/cpuinfo | grep -i 'Model name' -m 1 | cut -c14-}
-${alignr}Check updates:${execi 6000 aptitude search "~U" | /usr/bin/wc -l}
 CPU1: ${cpu cpu1}% ${alignr}${cpubar cpu1 8,100}${color}${outlinecolor}
 CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 8,100}${color}${outlinecolor}
 RAM : ${memperc}% ${alignr}${membar 8,100}${color}${outlinecolor}
