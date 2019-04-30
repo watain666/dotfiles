@@ -146,11 +146,11 @@ alias vz='vim ~/.zshrc'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias ip='ip -c address show'
-alias xclock='xclock -g +0+0 -update 1'
+alias ifconfig='ip -c a'
+alias xclock='xclock -g +0+0 -update 1&'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias rlf='readlink -f'
-alias cp='cp -avi'
+alias cpa='cp -avi'
 alias rm='rm -vi'
 alias mv='mv -vi'
 alias ln='ln -vi'
@@ -171,7 +171,7 @@ function weather ()
 . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 #[go]
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOPATH/bin
 
 #[Ruby Gems]
 export GEM_HOME=$HOME/gems

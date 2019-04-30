@@ -25,3 +25,10 @@
     st = status --short
     b = branch -v
     cane = commit --amend --no-edit
+    rhh = reset --hard HEAD
+
+[includeIf "gitdir:/var/www/html/*"]
+    path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/Dropbox/Dev/*"]
+    path = ~/.gitconfig-personal
