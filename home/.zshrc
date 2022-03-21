@@ -1,7 +1,13 @@
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the start of this file.
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
+ZSH_DISABLE_COMPFIX=true
 export TERM=xterm-256color
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/rexliu/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -31,7 +37,7 @@ POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='\uf0da'
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{black}%F{green} \uf155%f%F{black} %k\ue0b0%f "
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs status)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs status virtualenv)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_spotify time)
 #POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %m/%d/%y}"
@@ -85,6 +91,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git git-flow debian grails rvm history-substring-search github gradle svn node npm zsh-syntax-highlighting sublime composer)
 plugins+=(zsh-autosuggestions)
 plugins+=(k)
+plugins+=(virtualenv)
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
@@ -112,8 +119,10 @@ alias gita.='git add .'
 alias gitc='git commit'
 
 #[php]
-#alias phpbrewswitch='bash /home/rexliu/Dropbox/Dev/phpbrew-tool/phpbrewswitch && reload'
-export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+#alias phpbrewswitch='bash $HOME/Dropbox/Dev/phpbrew-tool/phpbrewswitch && reload'
+export PATH="$PATH:$HOME/composer/vendor/bin"
+#[laravel]
+alias sail='bash vendor/bin/sail'
 
 #[PATH]
 export PATH="$PATH:$HOME/bin"
@@ -137,7 +146,7 @@ alias saug='sudo apt upgrade -y'
 #[dir]
 hash -d html='/var/www/html'
 hash -d dropbox="$HOME/Dropbox"
-hash -d dev="$HOME/Dropbox/Dev"
+hash -d dev="$HOME/OneDrive/Dev"
 hash -d dl="$HOME/Downloads"
 
 #[other]
@@ -154,12 +163,17 @@ alias cpa='cp -avi'
 alias rm='rm -vi'
 alias mv='mv -vi'
 alias ln='ln -vi'
+#alias pgstart="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+#alias pgstop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+#alias pgstatus="pg_ctl status -D /usr/local/var/postgres/"
+#echo "start/stop postgres pgstart and pgstop, status= pgstatus"
+#echo ""
 
 #[jekyll]
 alias bejs='bundle exec jekyll serve'
 
 #[thefuck]
-eval "$(thefuck --alias)"
+#eval "$(thefuck --alias)"
 
 # Weather in terminal
 function weather ()
@@ -171,6 +185,8 @@ function weather ()
 . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 #[go]
+export GO111MODULE=on
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 #[Ruby Gems]
@@ -178,7 +194,7 @@ export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH
 
 #[Remap CapsLock to Ctrl]
-setxkbmap -option ctrl:nocaps
+#setxkbmap -option ctrl:nocaps
 
 #[PHPBrew]
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
@@ -200,4 +216,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #[Anaconda]
-source $HOME/anaconda3/etc/profile.d/conda.sh
+#source $HOME/anaconda3/etc/profile.d/conda.sh
+
+#[Homebrew Command Not Found]
+if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+#[z]
+. /usr/local/etc/profile.d/z.sh
+
+#[ffmpeg]
+export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
+export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
+export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the end of this file.
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####

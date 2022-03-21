@@ -15,7 +15,7 @@
 	new = green bold
 	whitespace = red reverse
 [user]
-    name = watain666
+	name = watain666
     email = watain666666@gmail.com
 [alias]
     adog = log --all --decorate --oneline --graph
@@ -32,3 +32,10 @@
 
 [includeIf "gitdir:~/Dropbox/Dev/*"]
     path = ~/.gitconfig-personal
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = master
