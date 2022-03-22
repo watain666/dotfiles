@@ -1,8 +1,13 @@
+# Fig pre block. Keep at the top of this file.
+export PATH="${PATH}:${HOME}/.local/bin"
+eval "$(fig init zsh pre)"
 
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the start of this file.
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 ZSH_DISABLE_COMPFIX=true
 export TERM=xterm-256color
 
@@ -11,12 +16,6 @@ export ZSH=$HOME/.oh-my-zsh
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
-
-# Font mode for powerlevel9k
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-# Set name of the theme to load.
-ZSH_THEME="powerlevel9k/powerlevel9k"
 
 #prompt_zsh_showSpotify () {
 #  local color='%F{red}'
@@ -31,55 +30,11 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 #  fi
 #}
 
-# Prompt settings
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='\uf0da'
-#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{black}%F{green} \uf155%f%F{black} %k\ue0b0%f "
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs status virtualenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_spotify time)
-#POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %m/%d/%y}"
-POWERLEVEL9K_TIME_FORMAT="%D{%m/%d/%y \uf073 %H:%M}"
-#POWERLEVEL9K_CUSTOM_SPOTIFY="prompt_zsh_showSpotify"
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_ZSH_SHOWSTATUS_BACKGROUND='black'
-
-# Context
-DEFAULT_USER=$USER
-POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='green'
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='black'
-#POWERLEVEL9K_CONTEXT_TEMPLATE="%F{cyan}%n%f"
-
-# Dirs
-POWERLEVEL9K_DIR_HOME_BACKGROUND='green'
-POWERLEVEL9K_DIR_HOME_FOREGROUND='black'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='green'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='black'
-#POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='yellow'
-#POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='black'
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-
-# OS segment
-#POWERLEVEL9K_OS_ICON_BACKGROUND="cyan"
-#POWERLEVEL9K_OS_ICON_FOREGROUND="black"
-
-# # VCS icons
-#POWERLEVEL9K_VCS_GIT_ICON=$''
-#POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$''
-POWERLEVEL9K_VCS_STAGED_ICON=$'\uf055'
-POWERLEVEL9K_VCS_UNSTAGED_ICON=$'\uf421'
-POWERLEVEL9K_VCS_UNTRACKED_ICON=$'\uf00d'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=$'\uf0ab '
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=$'\uf0aa '
-
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -88,9 +43,9 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow debian grails rvm history-substring-search github gradle svn node npm zsh-syntax-highlighting sublime composer)
-plugins+=(zsh-autosuggestions)
-plugins+=(k)
+plugins=(git git-flow debian grails rvm history-substring-search github gradle svn node npm sublime composer)
+plugins+=(zsh-syntax-highlighting)
+#plugins+=(zsh-autosuggestions) conflict with fig!
 plugins+=(virtualenv)
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
@@ -152,7 +107,7 @@ hash -d dl="$HOME/Downloads"
 #[other]
 alias xc='xclip -sel clip < '
 alias vz='vim ~/.zshrc'
-alias ll='ls -alF'
+alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ifconfig='ip -c a'
@@ -187,7 +142,8 @@ function weather ()
 #[go]
 export GO111MODULE=on
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOROOT=/usr/local/go
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 #[Ruby Gems]
 export GEM_HOME=$HOME/gems
@@ -230,7 +186,10 @@ export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
 export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
 export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
 
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the end of this file.
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
+

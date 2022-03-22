@@ -39,3 +39,5 @@
 	required = true
 [init]
 	defaultBranch = master
+[credential]
+	helper = cache
