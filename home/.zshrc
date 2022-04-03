@@ -175,18 +175,22 @@ export NVM_DIR="$HOME/.nvm"
 #source $HOME/anaconda3/etc/profile.d/conda.sh
 
 #[Homebrew Command Not Found]
-if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
+HB_CNF_HANDLER="$(brew --prefix)/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+if [ -f "$HB_CNF_HANDLER" ]; then
+  source "$HB_CNF_HANDLER";
+fi
+
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 #[z]
-. /usr/local/etc/profile.d/z.sh
+. $(brew --prefix)/etc/profile.d/z.sh
 
 #[ffmpeg]
 export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
 export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
 export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
 
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
